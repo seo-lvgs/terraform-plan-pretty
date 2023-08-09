@@ -6,15 +6,17 @@ module.exports = {
     mode: 'development',
     entry: './src/ts/prettyplan.ts',
     devServer: {
-        contentBase: './dist'
+        static: {
+            directory: path.join(__dirname, 'dist')
+        }
     },
     plugins: [
         new HtmlWebpackPlugin({ template: 'src/index.html' }),
-        new CopyWebpackPlugin(['src/style.css'])
+        new CopyWebpackPlugin({patterns: ['src/style.css']})
     ],
     output: {
         filename: 'app.js',
-        path: path.resolve(__dirname, 'dist')
+        path: path.resolve(__dirname, 'dist'),
     },
     resolve: { extensions: ['.ts', '.js'] },
     module: {
